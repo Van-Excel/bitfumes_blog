@@ -27,15 +27,22 @@ You will also need `pip` (Python's package installer) to install dependencies.
 1. **Clone the repository**
 
    ```bash
+
    git clone https://github.com/Van-Excel/bitfumes_blog.git
    cd bitfumes_blog
 
 2. **Create and activate a virtual environment (optional, but recommended)**
-python3 -m venv env
-source env/bin/activate  # On Windows: `env\Scripts\activate`
+
+   ```pip
+   python3 -m venv env
+   source env/bin/activate  # On Windows: `env\Scripts\activate`
+
 
 3. **Install dependencies Install all required dependencies using pip:**
-pip install -r requirements.txt
+
+   ```
+   pip install -r requirements.txt
+
 
 # Running the Application
 
@@ -67,5 +74,3 @@ POST /blog/ - Create a new blog post
 GET /blog/{id} - Retrieve a specific blog post by ID
 PUT /blog/{id} - Update a specific blog post by ID
 DELETE /blog/{id} - Delete a specific blog post by ID
-
-```
