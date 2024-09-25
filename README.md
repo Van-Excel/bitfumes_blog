@@ -33,7 +33,7 @@ You will also need `pip` (Python's package installer) to install dependencies.
 
 2. **Create and activate a virtual environment (optional, but recommended)**
 
-   ```pip
+   ```
    python3 -m venv env
    source env/bin/activate  # On Windows: `env\Scripts\activate`
 
@@ -47,28 +47,37 @@ You will also need `pip` (Python's package installer) to install dependencies.
 # Running the Application
 
 1. **Start the FastAPI server Run the following command to start the server:**
-python main.py
+
+   ```
+   python main.py
+
 
 2. **Access the API Once the server is running, you can access the local API documentation:**
-API Docs (Swagger UI): <http://localhost:8000/docs>
-Alternative API Docs (ReDoc): <http://localhost:8000/redoc>
-API Documentation
-FastAPI automatically generates interactive API documentation using Swagger UI. You can access it by navigating to the /docs endpoint when the server is running.
+
+   ```
+   API Docs (Swagger UI): <http://localhost:8000/docs>
+   Alternative API Docs (ReDoc): <http://localhost:8000/redoc>
+   API Documentation
+   FastAPI automatically generates interactive API documentation using Swagger UI. You can access it by navigating to the /docs endpoint when the server is running.
+
 
 # Project Structure
 
-├── app
-│   ├── **init**.py
-│   ├── models.py        # Database models
-│   ├── schemas.py       # Pydantic models (validation)
-│   ├── main.py          # Main application file
-│   ├── routes.py        # API routes
-│   └── database.py      # Database connection setup
-├── tests                # Unit and integration tests
-├── requirements.txt     # List of dependencies
-├── README.md            # Project documentation
+   ```
+   ├── app
+   │   ├── **init**.py
+   │   ├── models.py        # Database models
+   │   ├── schemas.py       # Pydantic models (validation)
+   │   ├── main.py          # Main application file
+   │   ├── routes.py        # API routes
+   │   └── database.py      # Database connection setup
+   ├── tests                # Unit and integration tests
+   ├── requirements.txt     # List of dependencies
+   ├── README.md            # Project documentation
 
-Example Endpoints
+
+
+# Example Endpoints
 GET /blogs/ - Retrieve a list of all blog posts
 POST /blog/ - Create a new blog post
 GET /blog/{id} - Retrieve a specific blog post by ID
