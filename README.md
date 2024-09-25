@@ -1,52 +1,66 @@
-Blog API
-A simple Blog API built using FastAPI. This project provides a basic CRUD (Create, Read, Update, Delete) interface for managing blog posts.
+# Blog API
 
-Table of Contents
-Getting Started
-Installation
-Running the Application
-API Documentation
-Project Structure
-Contributing
-License
-Getting Started
+A simple Blog API built using [FastAPI](https://fastapi.tiangolo.com/). This project provides a basic CRUD (Create, Read, Update, Delete) interface for managing blog posts.
+
+## Table of Contents
+
+- [Getting Started](#getting-started)
+- [Installation](#installation)
+- [Running the Application](#running-the-application)
+- [API Documentation](#api-documentation)
+- [Project Structure](#project-structure)
+
+
+---
+
+## Getting Started
+
 Follow the instructions below to set up and run the project locally.
 
-Prerequisites
-Make sure you have Python 3.7+ installed on your system. You can download it from here.
+### Prerequisites
 
-You will also need pip (Python's package installer) to install dependencies.
+Make sure you have Python 3.7+ installed on your system. You can download it from [here](https://www.python.org/downloads/).
 
-Installation
-Clone the repository
+You will also need `pip` (Python's package installer) to install dependencies.
 
-bash
-Copy code
-git clone <https://github.com/Van-Excel/bitfumes_blog.git>
-cd blog-api
-Create and activate a virtual environment (optional, but recommended)
+### Installation
 
-bash
-Copy code
+1. **Clone the repository**
+
+   ```bash
+   git clone https://github.com/Van-Excel/bitfumes_blog.git
+   cd blog-api
+
+2. **Create and activate a virtual environment (optional, but recommended)**
 python3 -m venv env
 source env/bin/activate  # On Windows: `env\Scripts\activate`
-Install dependencies Install all required dependencies using pip:
 
-bash
-Copy code
+3. **Install dependencies Install all required dependencies using pip:**
 pip install -r requirements.txt
-Running the Application
-Start the FastAPI server Run the following command to start the server:
 
-bash
-Copy code
+# Running the Application
+
+1. **Start the FastAPI server Run the following command to start the server:**
 python main.py
-Access the API Once the server is running, you can access the local API documentation:
 
+2. **Access the API Once the server is running, you can access the local API documentation:**
 API Docs (Swagger UI): <http://localhost:8000/docs>
 Alternative API Docs (ReDoc): <http://localhost:8000/redoc>
 API Documentation
 FastAPI automatically generates interactive API documentation using Swagger UI. You can access it by navigating to the /docs endpoint when the server is running.
+
+
+# Project Structure
+├── app
+│   ├── __init__.py
+│   ├── models.py        # Database models
+│   ├── schemas.py       # Pydantic models (validation)
+│   ├── main.py          # Main application file
+│   ├── routes.py        # API routes
+│   └── database.py      # Database connection setup
+├── tests                # Unit and integration tests
+├── requirements.txt     # List of dependencies
+├── README.md            # Project documentation
 
 Example Endpoints
 GET /blogs/ - Retrieve a list of all blog posts
