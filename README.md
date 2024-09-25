@@ -10,7 +10,6 @@ A simple Blog API built using [FastAPI](https://fastapi.tiangolo.com/). This pro
 - [API Documentation](#api-documentation)
 - [Project Structure](#project-structure)
 
-
 ---
 
 ## Getting Started
@@ -29,7 +28,7 @@ You will also need `pip` (Python's package installer) to install dependencies.
 
    ```bash
    git clone https://github.com/Van-Excel/bitfumes_blog.git
-   cd blog-api
+   cd bitfumes_blog
 
 2. **Create and activate a virtual environment (optional, but recommended)**
 python3 -m venv env
@@ -49,10 +48,10 @@ Alternative API Docs (ReDoc): <http://localhost:8000/redoc>
 API Documentation
 FastAPI automatically generates interactive API documentation using Swagger UI. You can access it by navigating to the /docs endpoint when the server is running.
 
-
 # Project Structure
+
 ├── app
-│   ├── __init__.py
+│   ├── **init**.py
 │   ├── models.py        # Database models
 │   ├── schemas.py       # Pydantic models (validation)
 │   ├── main.py          # Main application file
