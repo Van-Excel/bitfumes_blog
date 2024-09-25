@@ -79,8 +79,8 @@ You will also need `pip` (Python's package installer) to install dependencies.
 
 # Example Endpoints
 
-GET /blogs/ - Retrieve a list of all blog posts
-POST /blog/ - Create a new blog post
-GET /blog/{id} - Retrieve a specific blog post by ID
-PUT /blog/{id} - Update a specific blog post by ID
-DELETE /blog/{id} - Delete a specific blog post by ID
+**GET /blogs/ - Retrieve a list of all blog posts**
+**POST /blog/ - Create a new blog post**
+**GET /blog/{id} - Retrieve a specific blog post by ID**
+**PUT /blog/{id} - Update a specific blog post by ID**
+**DELETE /blog/{id} - Delete a specific blog post by ID**
