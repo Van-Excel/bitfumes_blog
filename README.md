@@ -67,3 +67,5 @@ POST /blog/ - Create a new blog post
 GET /blog/{id} - Retrieve a specific blog post by ID
 PUT /blog/{id} - Update a specific blog post by ID
 DELETE /blog/{id} - Delete a specific blog post by ID
+
+```
