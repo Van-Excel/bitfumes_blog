@@ -74,10 +74,11 @@ You will also need `pip` (Python's package installer) to install dependencies.
    ├── tests                # Unit and integration tests
    ├── requirements.txt     # List of dependencies
    ├── README.md            # Project documentation
-
+   ```
 
 
 # Example Endpoints
+
 GET /blogs/ - Retrieve a list of all blog posts
 POST /blog/ - Create a new blog post
 GET /blog/{id} - Retrieve a specific blog post by ID
