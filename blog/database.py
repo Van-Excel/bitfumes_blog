@@ -4,7 +4,7 @@ from sqlalchemy.orm import sessionmaker
 
 
 # creating an engine
-SQLALCHEMY_DATABASE_URL = 'sqlite+pysqlite:///./blog.db'
+SQLALCHEMY_DATABASE_URL = 'sqlite+pysqlite:///./blogs.db'
 engine = create_engine(SQLALCHEMY_DATABASE_URL, 
                        connect_args={"check_same_thread": False},echo = True)
 

@@ -2,7 +2,7 @@ from typing import List
 from blog.models import Blog, User
 from fastapi import FastAPI, Depends, status, HTTPException
 import uvicorn
-from blog.schemas import BlogCreate, BlogResponse, User, UserResponse
+from blog.schemas import BlogCreate, BlogResponse, SingleBlog, User, UserResponse
 from . import models
 from blog.hashing import Hash
 from blog.database import engine, SessionLocal
@@ -53,7 +53,7 @@ def get_db():
     tags=["Blog"],
 )
 async def create_blog(blog: BlogCreate, session: Session = Depends(get_db)):
-    new_book = models.Blog(title=blog.title, body=blog.body)
+    new_book = models.Blog(title=blog.title, body=blog.body, user_id = 1)
     session.add(new_book)
     session.commit()
     session.refresh(new_book)
@@ -81,7 +81,7 @@ async def get_blogs(session: Session = Depends(get_db)):
 
 @app.get(
     "/blog/{id}",
-    response_model=BlogResponse,
+    response_model=SingleBlog,
     status_code=status.HTTP_200_OK,
     tags=["Blog"],
 )
@@ -110,7 +110,7 @@ async def delete_blog(id: int, session: Session = Depends(get_db)):
             detail=f"Blog with ID of {id} not found",
         )
 
-    blog.delete(synchronize_session="false")
+    session.delete(blog)
     session.commit()
 
     return {"message": "Resource deleted"}
@@ -170,6 +170,26 @@ async def post_user(user: User, session: Session = Depends(get_db)):
     session.refresh(new_user)
 
     return new_user
+
+@app.delete(
+    "/user/{id}",
+    
+    status_code=status.HTTP_201_CREATED,
+    tags=["Users"],
+)
+async def delete_user(id: int, session: Session = Depends(get_db)):
+    # new_user = user.model_dump()
+
+    user = session.query(models.User).filter(models.User.id == id).first()
+    if not user:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"User with ID of {id} not found",
+        )
+    session.delete(user)
+    session.commit()
+
+    return {"message": "User deleted"}
 
     
 

@@ -1,21 +1,7 @@
 from pydantic import BaseModel, EmailStr
 
 
-class BlogCreate(BaseModel):
-    
-    title: str
-    body:str
-    class Config:
-        orm_mode = True
-        
-class BlogResponse(BlogCreate):
-    
-    pass
-    
-    class Config:
-        orm_mode = True
-        
-        
+
 class User(BaseModel):
     name: str
     email: EmailStr
@@ -30,5 +16,28 @@ class UserResponse(BaseModel):
     
     class Config:
         orm_mode = True
+class BlogCreate(BaseModel):
+    
+    title: str
+    body:str
+    class Config:
+        orm_mode = True
+        
+class BlogResponse(BlogCreate):
+    
+    
+    pass
+    
+    class Config:
+        orm_mode = True
+        
+class SingleBlog(BlogResponse):
+    creator:UserResponse
+    
+    class Config:
+        orm_mode = True
+        
+        
+
     
     
