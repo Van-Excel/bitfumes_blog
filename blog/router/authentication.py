@@ -28,4 +28,4 @@ async def login(user: User, session: Session = Depends(get_db)):
         )
     # generate token and send to user
     
-    return {"message": "User logged in successfully"}
+    return {"user":auth_user.name, "message": "User logged in successfully"}
