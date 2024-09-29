@@ -20,6 +20,7 @@ class User:
         session.add(new_user)
         session.commit()
         session.refresh(new_user)
+        return new_user
 
     def delete(self, id: int, session: Session):
 

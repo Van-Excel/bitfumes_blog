@@ -3,7 +3,7 @@ import uvicorn
 
 from . import models
 from .database import engine
-from .router import users, blogs
+from .router import users, blogs, authentication
 
 
 tags_metadata = [
@@ -26,6 +26,7 @@ app = FastAPI(
 
 app.include_router(users.router)
 app.include_router(blogs.router)
+app.include_router(authentication.router)
 
 # create database tables (DDL)
 models.Base.metadata.create_all(engine)
