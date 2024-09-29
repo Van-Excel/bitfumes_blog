@@ -2,7 +2,7 @@ from fastapi import FastAPI
 import uvicorn
 
 from . import models
-from blog.database import engine
+from .database import engine
 from .router import users, blogs
 
 
@@ -35,7 +35,7 @@ models.Base.metadata.create_all(engine)
 
 if __name__ == "__main__":
     config = uvicorn.Config(
-        "main@router", port=8000, log_level="info", reload=True, use_colors=True
+        "blog.main:app", port=8000, log_level="info", reload=True, use_colors=True
     )
     server = uvicorn.Server(config)
     server.run()

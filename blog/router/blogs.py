@@ -9,12 +9,14 @@ from ..schemas import BlogCreate, BlogResponse, SingleBlog
 from ..hashing import Hash
 from sqlalchemy.orm import Session
 from ..main import models
+from ..services.blog import Blogs
 
 
 router = APIRouter(tags=["Blog"])
 
 
 hash = Hash()
+blogs = Blogs()
 
 
 @router.post(
@@ -23,12 +25,8 @@ hash = Hash()
     status_code=status.HTTP_201_CREATED,
 )
 async def create_blog(blog: BlogCreate, session: Session = Depends(get_db)):
-    new_book = models.Blog(title=blog.title, body=blog.body, user_id=1)
-    session.add(new_book)
-    session.commit()
-    session.refresh(new_book)
 
-    return new_book
+    return blogs.create(blog, session)
 
 
 @router.get(
@@ -40,12 +38,7 @@ async def get_blogs(session: Session = Depends(get_db)):
     # statement = select(models.Blog).order_by(models.Blog.title)
     # result = session.execute(statement)
     # results = result.scalars().all() # Returns a list of tuples containing Blog objects
-    blogs = session.query(Blog).all()
-    if not blogs:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND, detail=f"Blogs not found"
-        )
-    return blogs
+    return blogs.retrieve_all(session)
 
 
 @router.get(
@@ -55,13 +48,7 @@ async def get_blogs(session: Session = Depends(get_db)):
 )
 async def get_single_blog(id: int, session: Session = Depends(get_db)):
     # sqlalachemy doesn't have where function
-    blog = session.query(Blog).filter(Blog.id == id).first()
-    if not blog:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail=f"Blog with ID of {id} not found",
-        )
-    return blog
+    return blogs.retrieve(id, session)
 
 
 @router.delete(
@@ -70,44 +57,11 @@ async def get_single_blog(id: int, session: Session = Depends(get_db)):
 )
 async def delete_blog(id: int, session: Session = Depends(get_db)):
 
-    blog = session.query(Blog).filter(Blog.id == id).first()
-    if not blog:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail=f"Blog with ID of {id} not found",
-        )
-
-    session.delete(blog)
-    session.commit()
-
-    return {"message": "Resource deleted"}
+    return blogs.delete(id, session)
 
 
 @router.patch("/blog/{id}", status_code=status.HTTP_202_ACCEPTED)
 async def update_blog(
     id: str, blog_update: BlogCreate, session: Session = Depends(get_db)
 ):
-    # Convert blog_update to a dictionary
-    # blog_update_dict = blog_update.dict(exclude_unset=True)  # This excludes fields that were not set
-    blog_update_dict = blog_update.model_dump()
-
-    # Build the update statement
-    # stmt = (
-    # update(Blog)
-    # .where(Blog.id == id)
-    # .values(blog_update_dict)
-    # .execution_options(synchronize_session="fetch")
-    # )
-    # Execute the statement
-    # session.execute(stmt)
-    # session.commit
-    blog = session.query(Blog).filter(Blog.id == id)
-    if not blog:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail=f"Blog with ID of {id} not found",
-        )
-
-    blog.update(blog_update_dict)
-    session.commit()
-    return {"message": "Resource updated successfully"}
+    return blogs.delete(id, blog_update, session)
